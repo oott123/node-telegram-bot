@@ -1,0 +1,5 @@
+/lib
+node_modules
+*~
+Thumbs.db
+.DS_Store

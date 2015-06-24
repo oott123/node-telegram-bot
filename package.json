@@ -1,0 +1,20 @@
+{
+  "name": "telegram-bot",
+  "version": "0.1.0",
+  "description": "A quick and dirty client for creating Bots on Telegram.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yeechan Lu",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.9.3",
+    "q-bluebird": "0.0.1",
+    "request-promise": "^0.4.2",
+    "socks5-https-client": "^1.1.0"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3"
+  }
+}
