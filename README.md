@@ -1,6 +1,8 @@
 telegram-bot
 ============
 
+[![npm version](https://badge.fury.io/js/telegram-bot.svg)](http://badge.fury.io/js/telegram-bot)
+
 Create your own Telegram bot in minutes with [the official Bot API][api]!
 
 Quick Start
