@@ -8,7 +8,7 @@ Create your own Telegram bot in minutes with [the official Bot API][api]!
 Quick Start
 -----------
 
-An echo bot in 9 lines:
+An echo bot in 9 lines: (CoffeeScript)
 
 ```coffeescript
 Telegram = require 'telegram-bot'
@@ -22,6 +22,24 @@ tg.on 'message', (msg) ->
     chat_id: msg.chat.id
 
 tg.start()
+```
+
+or 11 lines (JavaScript):
+
+```javascript
+var Telegram = require('telegram-bot');
+var tg = new Telegram(process.env.TELEGRAM_BOT_TOKEN);
+
+tg.on('message', function(msg) {
+  if (!msg.text) return;
+  tg.sendMessage({
+    text: msg.text,
+    reply_to_message_id: msg.message_id,
+    chat_id: msg.chat.id
+  });
+});
+
+tg.start();
 ```
 
 For more examples, checkout the `examples` folder!
