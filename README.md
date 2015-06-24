@@ -50,3 +50,9 @@ All methods in the official Bot API can be called directly on the `Telegram` obj
 
  [api]: https://core.telegram.org/bots
  [manual]: https://core.telegram.org/bots/api
+
+Todo
+----
+* [ ] better error handling
+* [ ] better logging
+* [ ] add more examples utilizing multimedia messages
