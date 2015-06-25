@@ -23,9 +23,10 @@ class Telegram extends EventEmitter
       id = _.last(data.result)?.update_id || update_id
       self.polling(id + 1)
 
-  start: -> 
+  start: ->
     @getMe().then (data) =>
       @me = data.result
+      @emit 'connected', @me
       console.log @me
       @polling()
 
