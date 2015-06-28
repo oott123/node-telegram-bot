@@ -31,7 +31,7 @@ map =
       if text == randomNumber
         delete sessions[msg.chat.id]
         msg.reply
-          text: "Congratulations, @#{msg.from.username}! The answer is #{randomNumber}. Start a new game by sending /1a2b."
+          text: "Congratulations, @#{msg.from.username || msg.from.first_name}! The answer is #{randomNumber}. Start a new game by sending /1a2b."
       else if text?.length == 4 && text.match(/^[0-9]{4}$/)
         if text.match(/([0-9]).*\1/)
           msg.reply
@@ -55,7 +55,7 @@ map =
         force_reply: true
 
 tg.on 'message', (msg) ->
-  console.log "#{msg.date} #{msg.from.username}: #{msg.text}"
+  console.log "#{msg.date} #{msg.from.username || msg.from.first_name}: #{msg.text}"
   text = String(msg.text).trim()
   msg.reply = (options) ->
     tg.sendMessage _.defaults options,
