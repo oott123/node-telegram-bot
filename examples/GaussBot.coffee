@@ -10,7 +10,7 @@ map =
   help: (msg) ->
     msg.reply
       text: """
-        /1a2b - start a 1A2B game
+        /1a2b - start a 1A2B game (https://en.wikipedia.org/wiki/Bulls_and_Cows)
         /cancel - cancel any ongoing games
         /help - about this bot
       """
@@ -30,8 +30,10 @@ map =
       text = String(msg.text).trim()
       if text == randomNumber
         delete sessions[msg.chat.id]
+
+        name = if msg.from.username then "#{msg.from.username}" else msg.from.first_name
         msg.reply
-          text: "Congratulations, @#{msg.from.username || msg.from.first_name}! The answer is #{randomNumber}. Start a new game by sending /1a2b."
+          text: "Congratulations, #{name}! The answer is #{randomNumber}. Start a new game by sending /1a2b."
       else if text?.length == 4 && text.match(/^[0-9]{4}$/)
         if text.match(/([0-9]).*\1/)
           msg.reply
@@ -50,7 +52,7 @@ map =
               force_reply: true
 
     msg.reply
-      text: "A new random number has been generated! Reply to me the number you guess ┏ (゜ω゜)=☞"
+      text: "A new random 4-digital number has been generated! Reply to me the number you guess ┏ (゜ω゜)=☞"
       reply_markup:
         force_reply: true
 
