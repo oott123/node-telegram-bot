@@ -8,4 +8,5 @@ tg.on 'message', (msg) ->
     reply_to_message_id: msg.message_id
     chat_id: msg.chat.id
 
-tg.start()
+tg.start (me) ->
+	console.log "#{me.first_name} running!"
