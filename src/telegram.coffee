@@ -20,8 +20,12 @@ class Telegram extends EventEmitter
         Q.fcall -> self.emit 'message', i.message
         .catch (err) -> console.error err
 
-      id = _.last(data.result)?.update_id || update_id
-      self.polling(id + 1)
+      maxId = _.last(data.result)?.update_id
+      if maxId != undefined
+        maxId += 1
+
+      id = maxId || update_id
+      self.polling(id)
 
   start: ->
     @getMe().then (data) =>
