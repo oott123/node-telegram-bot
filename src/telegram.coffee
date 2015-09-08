@@ -27,11 +27,11 @@ class Telegram extends EventEmitter
       id = maxId || update_id
       self.polling(id)
 
-  start: ->
+  start: (callback) ->
     @getMe().then (data) =>
       @me = data.result
       @emit 'connected', @me
-      console.log @me
+      callback.call null, @me unless typeof callback isnt 'function'
       @polling()
 
 methods = """
