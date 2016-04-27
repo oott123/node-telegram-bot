@@ -53,6 +53,5 @@ All methods in the official Bot API can be called directly on the `Telegram` obj
 
 Todo
 ----
-* [ ] better error handling
 * [ ] better logging
 * [ ] add more examples utilizing multimedia messages

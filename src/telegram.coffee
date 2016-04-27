@@ -5,20 +5,20 @@ Agent = require 'socks5-https-client/lib/Agent'
 EventEmitter = require('events').EventEmitter
 
 class Telegram extends EventEmitter
-  constructor: (@token) ->
+  constructor: (@token, {@pollTimeout = 30, @retryTimeout = 10} = {}) ->
 
   polling: (update_id) ->
     self = this
     @getUpdates
       offset: update_id
-      timeout: 10
+      timeout: self.pollTimeout
     .catch (err) ->
-      console.log err.error
-      Q.delay(10000).then -> self.polling(update_id)
+      self.emit 'error', err
+      Q.delay(self.retryTimeout * 1000).then -> self.polling(update_id)
     .then (data) ->
-      _.forEach data.result, (i) ->
+      _.forEach data.result, (i) =>
         Q.fcall -> self.emit 'message', i.message
-        .catch (err) -> console.error err
+        .catch (err) => self.emit 'error', err
 
       maxId = _.last(data.result)?.update_id
       if maxId != undefined
@@ -31,8 +31,8 @@ class Telegram extends EventEmitter
     @getMe().then (data) =>
       @me = data.result
       @emit 'connected', @me
-      console.log @me
       @polling()
+      data
 
 methods = """
   getMe
@@ -44,10 +44,20 @@ methods = """
   sendSticker
   sendVideo
   sendLocation
+  sendVenue
+  sendContact
   sendChatAction
   getUserProfilePhotos
+  getFile
+  kickChatMember
+  unbanChatMember
+  answerCallbackQuery
+  answerInlineQuery
   getUpdates
   setWebhook
+  editMessageText
+  editMessageCaption
+  editMessageReplyMarkup
 """
 
 createStub = (name) -> (options) ->

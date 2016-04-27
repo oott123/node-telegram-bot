@@ -7,5 +7,6 @@ tg.on 'message', (msg) ->
     text: msg.text
     reply_to_message_id: msg.message_id
     chat_id: msg.chat.id
-
+tg.on 'error', (err) ->
+  console.error err
 tg.start()
