@@ -3,11 +3,11 @@
   "version": "0.3.0",
   "description": "A quick and dirty client for creating Bots on Telegram.",
   "main": "index.js",
-  "repository": "https://github.com/orzFly/node-telegram-bot.git",
+  "repository": "https://github.com/oott123/node-telegram-bot.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Yeechan Lu",
+  "author": "Yeechan Lu, oott123",
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.9.3",
