@@ -1,6 +1,7 @@
 _ = require 'lodash'
 rp = require 'request-promise'
 Q = require 'q-bluebird'
+fs = require 'fs'
 Agent = require 'socks5-https-client/lib/Agent'
 EventEmitter = require('events').EventEmitter
 
@@ -18,7 +19,7 @@ class Telegram extends EventEmitter
     .then (data) ->
       _.forEach data.result, (i) =>
         Q.fcall -> self.emit 'message', i.message
-        .catch (err) => self.emit 'error', err
+        .catch (err) -> self.emit 'error', err
 
       maxId = _.last(data.result)?.update_id
       if maxId != undefined
@@ -61,10 +62,19 @@ methods = """
 """
 
 createStub = (name) -> (options) ->
+  formData = _.mapValues options || {}, (i) ->
+    if i instanceof fs.ReadStream
+      i
+    else if _.isObject(i) and (i.value instanceof fs.ReadStream) and _.isObject(i.options)
+      i
+    else if _.isObject(i) || _.isArray(i)
+      JSON.stringify(i)
+    else
+      String(i)
+  formData = null if _.isEmpty(formData)
   rp.post
     url: "https://api.telegram.org/bot#{@token}/#{name}"
-    form: _.mapValues options || {}, (i) ->
-      if _.isObject(i) || _.isArray(i) then JSON.stringify(i) else String(i)
+    formData: formData
     agentClass: if @socksProxy then Agent else null
     agentOptions: if @socksProxy then {
         socksHost: @socksProxy.host,
