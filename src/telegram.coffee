@@ -65,7 +65,7 @@ createStub = (name) -> (options) ->
   formData = _.mapValues options || {}, (i) ->
     if i instanceof fs.ReadStream
       i
-    else if _.isObject(i) and (i.value instanceof fs.ReadStream) and _.isObject(i.options)
+    else if _.isObject(i) and i.value and _.isObject(i.options)
       i
     else if _.isObject(i) || _.isArray(i)
       JSON.stringify(i)
