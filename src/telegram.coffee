@@ -59,6 +59,11 @@ methods = """
   editMessageText
   editMessageCaption
   editMessageReplyMarkup
+  getChat
+  leaveChat
+  getChatAdministrators
+  getChatMember
+  getChatMembersCount
 """
 
 createStub = (name) -> (options) ->
