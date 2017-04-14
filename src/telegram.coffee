@@ -24,9 +24,10 @@ class Telegram extends EventEmitter
       maxId = _.last(data.result)?.update_id
       if maxId != undefined
         maxId += 1
+      # else ignore update id
+      # because telegram often return empty response while given update
 
-      id = maxId || update_id
-      self.polling(id)
+      self.polling maxId
 
   start: ->
     @getMe().then (data) =>
