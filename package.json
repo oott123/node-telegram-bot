@@ -1,6 +1,6 @@
 {
   "name": "telegram-bot",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A quick and dirty client for creating Bots on Telegram.",
   "main": "index.js",
   "repository": "https://github.com/oott123/node-telegram-bot.git",
