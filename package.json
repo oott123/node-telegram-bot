@@ -11,9 +11,9 @@
   "author": "Yeechan Lu, oott123",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^3.9.3",
+    "lodash": "^4.17.5",
     "q-bluebird": "0.0.1",
-    "request-promise": "^0.4.2",
+    "request-promise": "^2.0.1",
     "socks5-https-client": "^1.1.0"
   },
   "devDependencies": {
